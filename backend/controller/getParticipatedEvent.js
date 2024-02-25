@@ -6,6 +6,7 @@ const GetParticipatedEventController = async (req, res) => {
     if (userExists !== null) {
         const userInfo = await userModal.findById(userExists._id)
         console.log(userInfo);
+        // userInfo.participatedEvents
         res.json({
             "data":userInfo.participatedEvents,
             'message': "Data Found Successfully",

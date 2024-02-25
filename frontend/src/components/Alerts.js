@@ -30,8 +30,6 @@ function Alerts({ msg, type }) {
                     }
                 </div> :
 
-
-
                 <div>
                     {closeAlert === true ? '' : <div class={`max-w-xs bg-red-500 text-sm text-white rounded-md shadow-lg ${closeAlert ? 'hidden' : 'block'}  mb-3 ml-3  `} role="alert">
                         <div class="flex p-4">

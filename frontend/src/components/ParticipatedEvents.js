@@ -6,26 +6,40 @@ import axios from 'axios';
 function ParticipatedEvents() {
     const userId = localStorage.getItem('id')
     const [participated, setParticipated] = useState([])
-    // const [isParticipatePage,setIsParticipatePage] = useState(true);
+    const [commonElements, setCommonElements] = useState([]);
+    const [events, setEvents] = useState([])
     const [userPage, setUserPage] = useState(true);
 
     const updateUserPage = ()=>{
       setUserPage(!userPage)
     }
   
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/event/getEvent")
+          .then((response) => {
+            setEvents(response.data.eventData)
+            console.log(response)
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+    
+      }, []);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/event/participatedEvent/${userId}`)
-            .then((response) => {;
+            .then((response) => {
                 setParticipated(response.data.data)
                 console.log(response)
-                // setCodingEvents(response.data.eventData)
+                
             })
             .catch((err) => {
                 console.error(err);
             })
 
     }, [userId]);
+
+  
     return (
         <>
             <div className='flex lg:h-full h-full w-full flex-col lg:flex-row '>

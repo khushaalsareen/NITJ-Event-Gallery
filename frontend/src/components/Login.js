@@ -12,7 +12,7 @@ export default function Login() {
         msg: ''
     })
     const [formData, setFormData] = useState({
-        collegeId: 21102314,
+        collegeId: '',
         password: ''
     })
     const adminLogin = localStorage.getItem('adminLogged')
@@ -27,7 +27,7 @@ export default function Login() {
         }
     }
     function handleSubmit() {
-        if (formData.collegeId === 21038201000 || formData.password === '') {
+        if (formData.collegeId === '' || formData.password === '') {
             alert("Please fill all the details")
         } else {
             axios({

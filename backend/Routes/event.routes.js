@@ -10,6 +10,7 @@ const GetCompletedEvent = require('../controller/getCompletedEvent.controller')
 const GetParticipatedEventController = require('../controller/getParticipatedEvent')
 const RegisterEventController = require('../controller/register.controller')
 const getParticipateeListController = require('../controller/getParticipedStudents.controller')
+const { deleteEvent } = require('../controller/deleteEventController')
 const eventRouter=express.Router()
 
 eventRouter.use(bodyParser.urlencoded({ extended: false }))
@@ -22,4 +23,5 @@ eventRouter.post('/createEvent',cors(), CreateEvent)
 eventRouter.post('/register/:userId',cors(), RegisterEventController) 
 eventRouter.get('/participatedEvent/:userId',cors(), GetParticipatedEventController) 
 eventRouter.get('/participateeList', cors(), getParticipateeListController)
+eventRouter.delete('/deleteEvent/:id',deleteEvent)
 module.exports=eventRouter

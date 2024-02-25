@@ -17,7 +17,7 @@ export default function Signup() {
         firstName: '',
         lastName: '',
         emailId: '',
-        collegeId: '21105202',
+        collegeId: '',
         password: ''
     })
     function handleShow() {
@@ -30,7 +30,7 @@ export default function Signup() {
     }
     // validations on ffontend
     function handleSubmit() {
-        if (formData.firstName === '' || formData.lastName === '' || formData.collegeId === 21038201000 || formData.emailId === '' || formData.password === '') {
+        if (formData.firstName === '' || formData.lastName === '' || formData.collegeId === '' || formData.emailId === '' || formData.password === '') {
             alert("Fill the all details")
         } else {
             const postData = {

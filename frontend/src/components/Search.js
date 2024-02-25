@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import EventCard from './EventCard'
 import axios from 'axios';
-import EventJSON from '../utils/EventJSON'
+// import EventJSON from '../utils/EventJSON'
 
 
 function Search() {
-    const [Events, setEvents] = useState(EventJSON)
+    const [Events, setEvents] = useState([])
     const [search, setSearch] = useState('')
     
     useEffect(() => {
@@ -50,7 +50,7 @@ function Search() {
                                         return (
                                             
     
-                                            ele.eventName.toLowerCase().includes(search) || ele.eventType.toLowerCase().includes(search) ?
+                                            (ele.eventName.toLowerCase().includes(search.toLowerCase()) || ele.eventType.toLowerCase().includes(search.toLowerCase()))  ?
                                             <EventCard key={ele._id} dataToFetch={ele.eventName} eventName={ele.eventName.charAt(0).toUpperCase() + ele.eventName.slice(1)} date={ele.startDate} eventCategory={ele.eventType} eventImage={ele.eventImage} />
                                                 :
                                                 ''

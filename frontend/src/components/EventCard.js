@@ -1,8 +1,9 @@
 import React, {  } from 'react'
 import { Link } from 'react-router-dom';
 
-function EventCard({ dataToFetch, eventName, date, eventCategory,eventImage,userPage }) {
+function EventCard({ dataToFetch, eventName, date, eventCategory,eventImage,userPage,endDate }) {
     const adminLogin = localStorage.getItem('adminLogged')
+    // const userLogin = localStorage.getItem('userLogged')
     return (
         <Link to={`/eventDetail/${dataToFetch}`}>
             
@@ -52,8 +53,12 @@ function EventCard({ dataToFetch, eventName, date, eventCategory,eventImage,user
                     JOIN
                 </button>} 
             </div>
+            
+           
+            
         </div>
         </Link>
+        
     )
 }
 

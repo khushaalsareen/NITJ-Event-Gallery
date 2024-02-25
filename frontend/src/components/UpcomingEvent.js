@@ -7,6 +7,7 @@ import axios from 'axios';
 function UpcomingEvent() {
     const [Events, setEvents] = useState(EventJSON)
     const [UpcomingEvents, setUpcomingEvents] = useState(EventJSON)
+    const adminLogin = localStorage.getItem('adminLogged')
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/event/getUpcomingEvent")

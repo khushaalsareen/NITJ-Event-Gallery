@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
 // import EventJSON from '../utils/EventJSON'
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import Alerts from "./Alerts";
 
 
 function EventsDetail() {
   const { id } = useParams()
 
-
+  // const {navigate} = useNavigate();
+  
+  const navigate = useNavigate();
   const [Events, setEvents] = useState([])
   const [postData, setPostData] = useState('')
   const [eventDetails, setEventDetails] = useState(Events)
@@ -41,6 +43,20 @@ function EventsDetail() {
         console.error(err);
       })
   }
+
+  const handleDelete = () => {
+    console.log(id);
+    axios.delete(`http://localhost:8000/api/event/deleteEvent/${id}`)
+      .then((response) => {
+        setActivateAlert(true);
+        setAlertMsg({ statusCode: response.data.statusCode, msg: response.data.message });
+        // Use navigate function to redirect
+        navigate('/admin/dashboard');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   
   useEffect(() => {
     axios.get("http://localhost:8000/api/event/getEvent")
@@ -146,8 +162,17 @@ function EventsDetail() {
                 </p>
               </details>
 
-              {adminLogin === 'true' ? null :
-
+              {adminLogin === 'true' ? 
+                  <div className="flex mt-8">
+                  <button onClick={handleDelete}
+                    className=" block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-900 focus:bg-indigo-900 text-black hover:text-white focus:text-white rounded-lg px-2 py-2 font-semibold my-2"
+                    type="button"
+                    data-ripple-light="true"
+                  >
+                    Delete
+                  </button>
+                </div> 
+                :
                 <div className="flex mt-8">
                   {new Date(eventDetails?.endDate).getTime()<Date.now() ? null:<button onClick={handleRegister}
                     className=" block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-900 focus:bg-indigo-900 text-black hover:text-white focus:text-white rounded-lg px-2 py-2 font-semibold my-2"

@@ -13,7 +13,7 @@ function Dashboard() {
     useEffect(() => {
         axios.get("http://localhost:8000/api/dashboard/stats")
             .then((response) => {
-                console.log(response.data.data);
+                console.log(response);
                 setDashboardData(response.data.data)
                 setcompleteEventTable(response.data.data.completeEventDetails)
             })
@@ -24,6 +24,7 @@ function Dashboard() {
     }, [adminLogin]);
 
     const handleDownload = () => {
+        // console.log(contentRef)
         html2canvas(contentRef.current).then((canvas) => {
           const imgData = canvas.toDataURL('image/png');
           const pdf = new jsPDF();
